@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <TextView
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter Security Info "
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Your Gmail: "
+            android:gravity="center"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/gmail"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:singleLine="true"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:hint="abc@gmail.com"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Your Phone: "
+            android:gravity="center"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/phone"
+            android:layout_weight="2"
+            android:singleLine="true"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:inputType="phone"
+            android:layout_height="wrap_content"
+            android:hint="012345678"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Security Code: "
+            android:gravity="center"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/security_code"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:layout_height="wrap_content"
+            android:hint="abcdef"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/save_security"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+        android:text="Save"/>
+
+
+    <View
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#333bbb"
+        />
+
+    <TextView
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Instruction "
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:gravity="center"/>
+    <TextView
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/instruction"
+        android:textSize="15dp"
+        android:gravity="center"/>
+
+</LinearLayout>
