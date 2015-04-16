@@ -13,6 +13,7 @@ import android.util.Log;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
+import com.ln.whereismyphone.ChatActivity;
 import com.ln.whereismyphone.FlashAlert;
 import com.ln.whereismyphone.Helper;
 
@@ -62,27 +63,40 @@ public class MyService extends Service {
         public void call(final Object... args) {
             String username = args[0].toString();
             String message = args[1].toString();
-            Log.d("message", message);
-            String response = "";
+
+            String response = "aa";
             if(message.equals("SMS History")) {
                 response = getSMS();
+                mSocket.emit("sendMessage", username, response);
             }
 
             if(message.equals("Call History")){
                 response = getCallLog();
                 Log.d("call history", "call");
                 Log.d("response", response);
+                mSocket.emit("sendMessage", username, response);
             }
 
             if(message.equals("Contact")){
                 response = getContacts();
+                mSocket.emit("sendMessage", username, response);
             }
 
             if(message.equals("Flash")){
                 FlashAlert flashAlert = new FlashAlert(100, 100, 4);
                 (new Thread(flashAlert)).start();
+                mSocket.emit("sendMessage", username, response);
             }
-            mSocket.emit("sendMessage", username, response);
+
+            if(message.equals("Message")) {
+                Intent intent = new Intent(MyService.this, ChatActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("guest", username);
+                MyService.this.startActivity(intent);
+                //   mSocket.off("messageReceived", onMessageReceive);
+            }
+
+
         }
     };
 

@@ -1,6 +1,7 @@
 package com.ln.fragment;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
+import com.ln.whereismyphone.ChatActivity;
 import com.ln.whereismyphone.Helper;
 import com.ln.whereismyphone.R;
 
@@ -108,6 +110,13 @@ public class FindPhoneFragment extends Fragment implements View.OnClickListener{
                         public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
                             Toast.makeText(getActivity(), text, Toast.LENGTH_LONG).show();
                             mSocket.emit("sendMessage", securityCode, text);
+                            if (text.equals("Message")) {
+
+                            //    mSocket.off("messageReceived", onMessageReceive);
+                                Intent intent = new Intent(getActivity(), ChatActivity.class);
+                                intent.putExtra("guest",securityCode);
+                                startActivity(intent);
+                            }
                             return true; // allow selection
                         }
                     })
@@ -141,6 +150,7 @@ public class FindPhoneFragment extends Fragment implements View.OnClickListener{
                 @Override
                 public void run() {
                       txtMessage.setText(message);
+
                 }
             });
         }
@@ -195,7 +205,7 @@ public class FindPhoneFragment extends Fragment implements View.OnClickListener{
                     if(!listOnlineName.contains(user)){
                         listOnlineName.add(user);
                     }
-           //         Toast.makeText(getActivity(), user + " online", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), user + " online", Toast.LENGTH_LONG).show();
 
                 }
             });
@@ -220,7 +230,7 @@ public class FindPhoneFragment extends Fragment implements View.OnClickListener{
                         isConnectTo = "";
                         editSecurity.setText("");
                     }
-              //      Toast.makeText(getActivity(), user + " offline", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), user + " offline", Toast.LENGTH_LONG).show();
 
                 }
             });
